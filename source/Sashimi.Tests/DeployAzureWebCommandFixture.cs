@@ -94,7 +94,7 @@ namespace Sashimi.AzureWebApp.Tests
             var psScript = @"
 $ErrorActionPreference = 'Continue'
 az --version
-Get-Module -Name Azure
+Get-AzureEnvironment
 az group list";
             await File.WriteAllTextAsync(Path.Combine(tempPath.DirectoryPath, "PreDeploy.ps1"), psScript);
 
@@ -131,8 +131,7 @@ az group list";
         async Task AssertContent(string hostName, string actualText, string rootPath = null)
         {
             var result= await client.GetStringAsync($"https://{hostName}/{rootPath}");
-            Console.Out.WriteLine($"Request to https://{hostName}/{rootPath} returned:");
-            Console.Out.WriteLine(result);
+
             result.Should().Be(actualText);
         }
 
