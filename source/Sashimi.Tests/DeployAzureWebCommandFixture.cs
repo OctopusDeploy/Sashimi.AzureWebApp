@@ -94,6 +94,7 @@ namespace Sashimi.AzureWebApp.Tests
             var psScript = @"
 $ErrorActionPreference = 'Continue'
 az --version
+Get-Module -Name Azure
 az group list";
             await File.WriteAllTextAsync(Path.Combine(tempPath.DirectoryPath, "PreDeploy.ps1"), psScript);
 
