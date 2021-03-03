@@ -131,7 +131,8 @@ az group list";
         async Task AssertContent(string hostName, string actualText, string rootPath = null)
         {
             var result= await client.GetStringAsync($"https://{hostName}/{rootPath}");
-
+            Console.Out.WriteLine($"Request to https://{hostName}/{rootPath} returned:");
+            Console.Out.WriteLine(result);
             result.Should().Be(actualText);
         }
 
